@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'appcolors.dart';
+
 class NumberInput extends StatefulWidget {
   final String label;
   final String value;
@@ -42,22 +42,33 @@ class _NumberInputState extends State<NumberInput> {
     }
   }
 
+  Widget _buildLabel(BuildContext context) {
+    if (widget.label.isEmpty) return const SizedBox.shrink();
+
+    final labelColor = Theme.of(context)
+        .inputDecorationTheme
+        .labelStyle
+        ?.color ??
+        Colors.black87;
+
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0, bottom: 4.0),
+      child: Text(
+        widget.required ? '${widget.label} *' : widget.label,
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: labelColor,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.label.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, bottom: 4.0),
-            child: Text(
-              widget.required ? '${widget.label} *' : widget.label,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-          ),
+        _buildLabel(context),
         TextField(
           controller: _controller,
           keyboardType: TextInputType.number,
@@ -67,7 +78,10 @@ class _NumberInputState extends State<NumberInput> {
               LengthLimitingTextInputFormatter(widget.maxLength),
           ],
           decoration: InputDecoration(
-            prefixIcon: widget.icon,
+            prefixIcon: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: widget.icon,
+            ),
             hintText: widget.placeholder,
             filled: true,
             fillColor: Colors.white,

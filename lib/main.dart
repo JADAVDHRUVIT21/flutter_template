@@ -23,17 +23,15 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.highlight, width: 1.5),
+            borderSide: BorderSide(color: AppColors.gray, width: 1.5),
             borderRadius: BorderRadius.circular(8),
           ),
-
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.textPrimary, width: 2.0),
+            borderSide: BorderSide(color: AppColors.borderGray, width: 2.0),
             borderRadius: BorderRadius.circular(8),
           ),
-
-          hintStyle: TextStyle(color: AppColors.primaryDark),
-          labelStyle: TextStyle(color: Colors.blue), // Normal label color
+          hintStyle: TextStyle(color: AppColors.textGray),
+          labelStyle: TextStyle(color: AppColors.labelBlack),
         ),
       ),
       home: const MyHomePage(),
@@ -71,20 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
 
               const SizedBox(height: 20),
-              SkeletonLoader(
-                itemCount: 1,
-                baseSequence: [
-                  'subtitle width:80 height:12',
-                  'circle width:100 height:100',
-                  'triangle width:20% height:40',
-                  'title width:90 height:20',
-                ],
-                spacing: 20,
-                isRow: true,
-              ),
               TextInput(
                 label: 'Enter Fruit Name',
-                name: 'fruit',
                 value: _inputValue,
                 onChanged: (val) => setState(() => _inputValue = val),
                 placeholder: 'e.g. Apple',
@@ -97,7 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(height: 10),
               TextInput(
                 label: 'Name',
-                name: 'Name',
                 placeholder: 'Enter your name',
                 icon: const Icon(Icons.person),
                 onChanged: (val) => setState(() => _name = val),
@@ -105,25 +90,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 10),
               PasswordInput(
-                label: 'Password',
-                value: '',
+                label: 'Password *',
                 placeholder: 'Enter your password',
                 icon: const Icon(Icons.lock),
-                required: true,
+                value: _passwoard,
                 onChanged: (val) => setState(() => _passwoard = val),
               ),
-              const SizedBox(height: 20),
-              SkeletonLoader(
-                itemCount: 1,
-                baseSequence: [
-                  'subtitle width:80% height:12',
-                  'title width:90% height:20',
-                  'circle width:100 height:100',
-                  'triangle width:20% height:40',
-                ],
-                spacing: 35,
-                isRow: false,
-              ),
+
               const SizedBox(height: 10),
               NumberInput(
                 label: 'Mobile Number',
@@ -137,7 +110,6 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(height: 10),
               TextInput(
                 label: 'Home',
-                name: 'Home',
                 placeholder: 'Home Address',
                 icon: const Icon(Icons.home),
                 onChanged: (val) => setState(() => _address = val),
@@ -151,18 +123,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 selectedValues: selectedCountry,
                 onChanged: (vals) => setState(() => selectedCountry = vals),
                 defaultValues: const ['Select Country'],
-              ),
-              const SizedBox(height: 20),
-              SkeletonLoader(
-                itemCount: 1,
-                baseSequence: [
-                  'subtitle width:80% height:12',
-                  'title width:90% height:20',
-                  'circle width:100 height:100',
-                  'triangle width:20% height:40',
-                ],
-                spacing: 50,
-                isRow: false,
               ),
               const SizedBox(height: 20),
               BooleanInput(
@@ -183,6 +143,22 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text("• UK"),
                   ],
                 ),
+              ),
+              const SizedBox(height: 20),
+              SkeletonLoader(
+                itemCount: 1,
+                baseSequence: [
+                  'circle width:100 height:100',
+                  'subtitle width:20% height:12',
+                  'subtitle width:30% height:12',
+                  'title width:40% height:20',
+                  'title width:40% height:20',
+                  'title width:40% height:50',
+                  // 'triangle width:100 height:100'
+
+                ],
+                spacing: 20,
+                isRow: false,
               ),
             ],
           ),

@@ -1,33 +1,38 @@
 import 'package:flutter/material.dart';
 
-  class AppColors {
+class AppColors {
+  // Basic Colors
+  static const Color black = Colors.black;
+  static const Color white = Colors.white;
+  static const Color gray = Colors.grey;
 
-  static const Color primary = Color(0xFF6200EE);
-  static const Color primaryDark = Color(0xFF3700B3);
-  static const Color primaryLight = Color(0xFFBB86FC);
+  // Backgrounds & Surfaces
+  static const Color background = Color(0xFFF5F5F5); // Light Gray
+  static const Color surface = white;
+  static const Color divider = Color(0xFFE0E0E0);    // Divider Gray
 
-  static const Color secondary = Color(0xFF03DAC6);
-  static const Color secondaryDark = Color(0xFF018786);
-  static const Color secondaryLight = Color(0xFF66FFF9);
+  // Text Colors
+  static const Color textPrimary = black;
+  static const Color textSecondary = gray;
+  static const Color textDisabled = gray;
 
-
-  static const Color background = Color(0xFFF5F5F5);
-  static const Color surface = Color(0xFFFFFFFF);
-  static const Color divider = Color(0xFFE0E0E0);
-
-
-  static const Color textPrimary = Colors.black;
-  static const Color textSecondary = Colors.grey;
-  static const Color textDisabled = Colors.grey;
-
-
-  static const Color success = Color(0xFF4CAF50);
-  static const Color warning = Color(0xFFFFC107);
-  static const Color error = Color(0xFFF44336);
-  static const Color info = Color(0xFF2196F3);
-
-  static const Color accent = Color(0xFFFF5722);
-  static const Color highlight = Color(0xFFFFEB3B);
-
+  // Misc
   static const Color transparent = Colors.transparent;
+
+  // Border Colors
+  static const Color borderLight = Color(0xFFE0E0E0); // Light Gray
+  static const Color borderGray = Color(0xFFBDBDBD);  // fixed capitalization
+  static const Color borderDark = black;
+
+  // Extended Text Colors
+  static const Color textBlack = Color(0xFF000000);       // Pure black
+  static const Color textDarkGray = Color(0xFF333333);    // Near black
+  static const Color textWhite = Color(0xFFFFFFFF);       // Pure white
+  static const Color textGray = Color(0xFFBDBDBD);   // Near white
+
+  // Label Colors
+  static const Color labelBlack = Color(0xFF000000);     // Dark gray, for strong labels
+  static const Color labelGray = Color(0xFF757575);   // Medium gray, for secondary labels
+  static const Color labelLightGray = Color(0xFFBDBDBD);    // Light gray, for disabled labels
+  static const Color labelWhite = white;                   // For dark backgrounds
 }

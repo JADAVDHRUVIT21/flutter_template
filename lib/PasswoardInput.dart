@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class PasswordInput extends StatefulWidget {
   final String label;
   final String value;
@@ -40,15 +41,16 @@ class _PasswordInputState extends State<PasswordInput> {
   }
 
   Widget _buildLabel(BuildContext context) {
-    return widget.label.isEmpty
-        ? const SizedBox.shrink()
-        : Padding(
+    if (widget.label.isEmpty) return const SizedBox.shrink();
+
+    return Padding(
       padding: const EdgeInsets.only(left: 8.0, bottom: 4.0),
       child: Text(
         widget.required ? '${widget.label} *' : widget.label,
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
           fontWeight: FontWeight.bold,
-          color: Colors.black87,
+          color: Theme.of(context).inputDecorationTheme.labelStyle?.color ??
+              Colors.black87,
         ),
       ),
     );
@@ -68,13 +70,10 @@ class _PasswordInputState extends State<PasswordInput> {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: widget.icon,
             ),
-            suffixIcon: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: InkWell(
-                onTap: () => setState(() => _obscureText = !_obscureText),
-                child: Icon(
-                  _obscureText ? Icons.visibility : Icons.visibility_off,
-                ),
+            suffixIcon: IconButton(
+              onPressed: () => setState(() => _obscureText = !_obscureText),
+              icon: Icon(
+                _obscureText ? Icons.visibility : Icons.visibility_off,
               ),
             ),
             hintText: widget.placeholder,
